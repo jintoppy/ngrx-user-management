@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { IApplicationState } from './store/reducers';
+import { Observable } from 'rxjs';
+import { AddUser } from './store/actions/users.actions';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ngrx-user-management';
+  users$?: Observable<any>;
+  constructor(private store: Store<IApplicationState>){}
+
+  ngOnInit(){
+    this.users$ = this.store.select(state => state.users.data);
+  }
+
+  addUser(){
+    // this.store.dispatch(new AddUser({name: `user${Math.random()}`}));
+    this.store.dispatch({
+      type: 'add_user',
+      payload: {name: `user${Math.random()}`}
+    });
+  }
 }
