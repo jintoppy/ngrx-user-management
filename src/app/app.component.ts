@@ -17,6 +17,10 @@ export class AppComponent {
     this.users$ = this.store.select(state => state.users.data);
   }
 
+  deleteUser(){
+    
+  }
+
   addUser(){
     // this.store.dispatch(new AddUser({name: `user${Math.random()}`}));
     this.store.dispatch({
