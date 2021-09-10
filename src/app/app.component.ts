@@ -14,11 +14,15 @@ export class AppComponent {
   constructor(private store: Store<IApplicationState>){}
 
   ngOnInit(){
+    this.store.dispatch({type: 'get_users'});
     this.users$ = this.store.select(state => state.users.data);
   }
 
-  deleteUser(){
-    
+  deleteUser(user: any){
+    this.store.dispatch({
+      type: 'delete_user',
+      payload: user
+    });
   }
 
   addUser(){

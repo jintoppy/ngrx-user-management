@@ -3,5 +3,5 @@
 <button (click)="addUser()">Add User</button>
 
 <div *ngFor="let user of users$ | async">
-  <h3>{{user.name}} <button (click)="deleteUser()">Delete</button></h3>
+  <h3>{{user.name?.firstname}} <button (click)="deleteUser(user)">Delete</button></h3>
 </div>
